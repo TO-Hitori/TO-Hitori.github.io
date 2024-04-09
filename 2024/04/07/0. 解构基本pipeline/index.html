@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="zh-CN" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>0.解构基本pipeline | TO-Hitori</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - $1 行","copy":"复制"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: '确认'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.1.1"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>0.解构基本pipeline</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2024-04-07T11:35:30.000Z" id="date"> 2024-04-07</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2024-04-09T12:58:07.555Z" id="updated"> 2024-04-09</time></div></span></div></div><hr><div id="post-content"><h2 id="解构基本pipeline"><a href="#解构基本pipeline" class="headerlink" title="解构基本pipeline"></a>解构基本pipeline</h2><p>借助<strong>pipeline</strong>，仅需四行代码即可生成图像：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-keyword">from</span> diffusers import DDPMPipeline<br><br>ddpm = DDPMPipeline.from_pretrained(<span class="hljs-string">&quot;google/ddpm-cat-256&quot;</span>, <span class="hljs-attribute">use_safetensors</span>=<span class="hljs-literal">True</span>).to(&quot;cuda&quot;)<br>image = ddpm(<span class="hljs-attribute">num_inference_steps</span>=25).images[0]<br></code></pre></td></tr></table></figure>
+
+<p>在上面的示例中，pipeline包含：</p>
+<ul>
+<li>去噪模型：UNet2DModel</li>
+<li>采样器：DDPMScheduler</li>
+</ul>
+<p>pipeline通过获取所需输出大小的随机噪声并将其多次通过去噪模型来对图像进行去噪。在每个时间步，去噪模型预测噪声残差，调采样器使用它来预测噪声较小的图像。管道重复此过程，直到到达指定数量的推理步骤的图像。</p>
+<p>要分别使用去噪模型和采样器重新创建pipeline，让我们编写自己的去噪过程：</p>
+<ol>
+<li><p>载入去噪模型和采样器：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> diffusers <span class="hljs-keyword">import</span> DDPMScheduler, UNet2DModel<br><br>scheduler = DDPMScheduler.from_pretrained(<span class="hljs-string">&quot;google/ddpm-cat-256&quot;</span>)<br>model = UNet2DModel.from_pretrained(<span class="hljs-string">&quot;google/ddpm-cat-256&quot;</span>, use_safetensors=<span class="hljs-literal">True</span>).to(<span class="hljs-string">&quot;cuda&quot;</span>)<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>通过采样器设置去噪过程的时间步数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">scheduler.set_timesteps(<span class="hljs-number">50</span>)<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>设置采样器的时间步数会创建一个包含均匀间隔元素的张量，在本示例中为 50。每个元素对应于模型对图像进行去噪的时间步。在进行去噪循环时，将迭代该张量以对图像进行去噪：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">scheduler.timesteps<br><br>tensor([<span class="hljs-number">980</span>, <span class="hljs-number">960</span>, <span class="hljs-number">940</span>, <span class="hljs-number">920</span>, <span class="hljs-number">900</span>, <span class="hljs-number">880</span>, <span class="hljs-number">860</span>, <span class="hljs-number">840</span>, <span class="hljs-number">820</span>, <span class="hljs-number">800</span>, <span class="hljs-number">780</span>, <span class="hljs-number">760</span>, <span class="hljs-number">740</span>, <span class="hljs-number">720</span>,<br>    	<span class="hljs-number">700</span>, <span class="hljs-number">680</span>, <span class="hljs-number">660</span>, <span class="hljs-number">640</span>, <span class="hljs-number">620</span>, <span class="hljs-number">600</span>, <span class="hljs-number">580</span>, <span class="hljs-number">560</span>, <span class="hljs-number">540</span>, <span class="hljs-number">520</span>, <span class="hljs-number">500</span>, <span class="hljs-number">480</span>, <span class="hljs-number">460</span>, <span class="hljs-number">440</span>,<br>    	<span class="hljs-number">420</span>, <span class="hljs-number">400</span>, <span class="hljs-number">380</span>, <span class="hljs-number">360</span>, <span class="hljs-number">340</span>, <span class="hljs-number">320</span>, <span class="hljs-number">300</span>, <span class="hljs-number">280</span>, <span class="hljs-number">260</span>, <span class="hljs-number">240</span>, <span class="hljs-number">220</span>, <span class="hljs-number">200</span>, <span class="hljs-number">180</span>, <span class="hljs-number">160</span>,<br>    	<span class="hljs-number">140</span>, <span class="hljs-number">120</span>, <span class="hljs-number">100</span>,  <span class="hljs-number">80</span>,  <span class="hljs-number">60</span>,  <span class="hljs-number">40</span>,  <span class="hljs-number">20</span>,   <span class="hljs-number">0</span>])<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>创建与所需输出图像形状相同的随机噪声：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><br>sample_size = model.config.sample_size<br>noise = torch.randn((<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, sample_size, sample_size), device=<span class="hljs-string">&quot;cuda&quot;</span>)<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>现在编写一个循环来迭代。</p>
+<ul>
+<li>在每个时间步，都会执行 UNet2DModel.forward() ，根据输入的噪声图像(input)和时间步(t)返回噪声残差(noisy_residual)。</li>
+<li>采样器的 step() 方法利用噪声残差(noisy_residual)、时间步(t))和噪声图像(input)预测前一个时间步长的图像。该输出成为去噪循环的下一个输入。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">input</span> = noise<br><br><span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> scheduler.timesteps:<br>    <span class="hljs-keyword">with</span> torch.no_grad():<br>        noisy_residual = model(<span class="hljs-built_in">input</span>, t).sample<br>    previous_noisy_sample = scheduler.step(noisy_residual, t, <span class="hljs-built_in">input</span>).prev_sample<br>    <span class="hljs-built_in">input</span> = previous_noisy_sample<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>最后一步是将去噪输出转换为图像：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br><span class="hljs-comment"># input的数据范围为[-1, 1], 转为[0, 1]</span><br><span class="hljs-comment"># shape: [1, 3, sample_size, sample_size] -&gt; [3, sample_size, sample_size]</span><br>image = (<span class="hljs-built_in">input</span> / <span class="hljs-number">2</span> + <span class="hljs-number">0.5</span>).clamp(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>).squeeze()<br><span class="hljs-comment"># shape: [3, sample_size, sample_size] -&gt; [sample_size, sample_size, 3]</span><br><span class="hljs-comment"># data range: (float32)[0, 1] -&gt; (uint8)[0, 255]</span><br><span class="hljs-comment"># device: cuda -&gt; cpu</span><br><span class="hljs-comment"># type: torch.tensor -&gt; numpy.array</span><br>image = (image.permute(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>) * <span class="hljs-number">255</span>).<span class="hljs-built_in">round</span>().to(torch.uint8).cpu().numpy()<br><span class="hljs-comment"># 输出为图像</span><br>image = Image.fromarray(image)<br>image<br></code></pre></td></tr></table></figure></li>
+</ol>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2024/03/14/YAML%E5%9F%BA%E7%A1%80/">YAML 上一篇 →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="文章目录">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">TO-Hitori</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%9E%84%E5%9F%BA%E6%9C%ACpipeline"><span class="toc-number">1.</span> <span class="toc-text">解构基本pipeline</span></a></li></ol></div></div><footer><nobr>构建自 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> 使用主题 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> 主题作者 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
