@@ -10,13 +10,13 @@
   font-family: 'JetBrains Mono';
   src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
 }
-</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - $1 行","copy":"复制"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
  document.documentElement.setAttribute('theme-mode', 'light')
 if (window.localStorage.getItem('theme-mode') === 'dark')
  document.documentElement.setAttribute('theme-mode', 'dark')</script><style>:root {
  --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
  --light-background: url('/img/bk.jpg');
- --theme-encrypt-confirm: '确认'
+ --theme-encrypt-confirm: 'confirm'
 }</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
 window.mermaid = mermaid;
 code.paintMermaid();
@@ -36,7 +36,119 @@ lightGallery(document.getElementById('post-bg'), {
    }
  }
 });
-document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.1.1"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>4.载入 LoRA 进行推理</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2024-04-10T13:35:30.000Z" id="date"> 2024-04-10</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2024-04-11T10:52:56.691Z" id="updated"> 2024-04-11</time></div></span></div></div><hr><div id="post-content"><h1 id="载入-LoRA-进行推理"><a href="#载入-LoRA-进行推理" class="headerlink" title="载入 LoRA 进行推理"></a>载入 LoRA 进行推理</h1><p>有许多Adapters类型（其中 LoRA 是最流行的）以不同的方式进行训练以实现不同的效果。您甚至可以组合多个Adapters来创建新的、独特的图像。</p>
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.1.1"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>4.载入 LoRA 进行推理</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2024-04-10T13:35:30.000Z" id="date"> 2024-04-10</time></div></span><br><span>Last Update: <div class="control"><time datetime="2024-04-11T10:52:56.691Z" id="updated"> 2024-04-11</time></div></span></div></div><hr><div id="post-content"><h1 id="载入-LoRA-进行推理"><a href="#载入-LoRA-进行推理" class="headerlink" title="载入 LoRA 进行推理"></a>载入 LoRA 进行推理</h1><p>有许多Adapters类型（其中 LoRA 是最流行的）以不同的方式进行训练以实现不同的效果。您甚至可以组合多个Adapters来创建新的、独特的图像。</p>
 <p>在本教程中，您将学习如何轻松加载和管理Adapters，以便通过Diffusers 中的 <strong>PEFT</strong> 进行推理。使用 LoRA 作为主要Adapters</p>
 <blockquote>
 <p>更多内容：<a target="_blank" rel="noopener" href="https://huggingface.co/docs/peft/conceptual_guides/adapter#low-rank-adaptation-lora">Adapters (huggingface.co)</a></p>
@@ -44,34 +156,34 @@ document.addEventListener("pjax:complete", reset);reset()})</script><meta name="
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">pip install -q transformers accelerate peft diffusers<br></code></pre></td></tr></table></figure>
 </blockquote>
 <h2 id="使用单个LoRA推理"><a href="#使用单个LoRA推理" class="headerlink" title="使用单个LoRA推理"></a>使用单个LoRA推理</h2><p>首先，加载带有稳定扩散<a target="_blank" rel="noopener" href="https://huggingface.co/docs/diffusers/api/pipelines/stable_diffusion/stable_diffusion_xl">Stable Diffusion XL</a> (SDXL) 检查点的Pipeline：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> diffusers <span class="hljs-keyword">import</span> DiffusionPipeline<br><span class="hljs-keyword">import</span> torch<br><br>checkpoint_path = <span class="hljs-string">&quot;stable-diffusion-xl-base-1.0&quot;</span><br>pipe = DiffusionPipeline.from_pretrained(<br>    checkpoint_path,<br>    torch_dtype=torch.float16,<br>    variant=<span class="hljs-string">&quot;fp16&quot;</span><br>).to(<span class="hljs-string">&quot;cuda&quot;</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> diffusers <span class="hljs-keyword">import</span> DiffusionPipeline<br><span class="hljs-keyword">import</span> torch<br><br>checkpoint_path = <span class="hljs-string">"stable-diffusion-xl-base-1.0"</span><br>pipe = DiffusionPipeline.from_pretrained(<br>    checkpoint_path,<br>    torch_dtype=torch.float16,<br>    variant=<span class="hljs-string">"fp16"</span><br>).to(<span class="hljs-string">"cuda"</span>)<br></code></pre></td></tr></table></figure>
 
-<p>接下来，使用 <code>load_lora_weights()</code> 方法加载 <a target="_blank" rel="noopener" href="https://huggingface.co/monsterapi/sdxl_finetuning_anime">monsterapi&#x2F;sdxl_finetuning_anime</a> Adapters。通过 PEFT 集成，您可以为检查点分配特定的 Adapters 名称，这样您就可以轻松地在不同的 LoRA 检查点之间切换。我们称这个适配器为“anime”。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">lora_path = <span class="hljs-string">r&#x27;D:\MyCode\Torch_Deom\LoRA\sdxl_finetuning_anime&#x27;</span><br>pipe.load_lora_weights(lora_path, weight_name=<span class="hljs-string">&quot;pytorch_lora_weights.safetensors&quot;</span>, adapter_name=<span class="hljs-string">&quot;anime&quot;</span>)<br></code></pre></td></tr></table></figure>
+<p>接下来，使用 <code>load_lora_weights()</code> 方法加载 <a target="_blank" rel="noopener" href="https://huggingface.co/monsterapi/sdxl_finetuning_anime">monsterapi/sdxl_finetuning_anime</a> Adapters。通过 PEFT 集成，您可以为检查点分配特定的 Adapters 名称，这样您就可以轻松地在不同的 LoRA 检查点之间切换。我们称这个适配器为“anime”。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">lora_path = <span class="hljs-string">r'D:\MyCode\Torch_Deom\LoRA\sdxl_finetuning_anime'</span><br>pipe.load_lora_weights(lora_path, weight_name=<span class="hljs-string">"pytorch_lora_weights.safetensors"</span>, adapter_name=<span class="hljs-string">"anime"</span>)<br></code></pre></td></tr></table></figure>
 
 <p>确保在提示中包含 <code>sdxl_finetuning_anime</code> ，然后就可以执行推理：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python">prompt = <span class="hljs-string">&quot;sdxl_finetuning_anime of a hacker with a hoodie&quot;</span><br><br>lora_scale = <span class="hljs-number">0.9</span><br>image = pipe(<br>    prompt,<br>    num_inference_steps=<span class="hljs-number">30</span>,<br>    cross_attention_kwargs=&#123;<span class="hljs-string">&quot;scale&quot;</span>: lora_scale&#125;,<br>    generator=torch.manual_seed(<span class="hljs-number">3407</span>)<br>).images[<span class="hljs-number">0</span>]<br>num = <span class="hljs-built_in">len</span>(os.listdir(<span class="hljs-string">&#x27;results&#x27;</span>))<br>image.save(<span class="hljs-string">f&#x27;results/sdxl-lora-anime<span class="hljs-subst">&#123;num&#125;</span>.jpg&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python">prompt = <span class="hljs-string">"sdxl_finetuning_anime of a hacker with a hoodie"</span><br><br>lora_scale = <span class="hljs-number">0.9</span><br>image = pipe(<br>    prompt,<br>    num_inference_steps=<span class="hljs-number">30</span>,<br>    cross_attention_kwargs={<span class="hljs-string">"scale"</span>: lora_scale},<br>    generator=torch.manual_seed(<span class="hljs-number">3407</span>)<br>).images[<span class="hljs-number">0</span>]<br>num = <span class="hljs-built_in">len</span>(os.listdir(<span class="hljs-string">'results'</span>))<br>image.save(<span class="hljs-string">f'results/sdxl-lora-anime<span class="hljs-subst">{num}</span>.jpg'</span>)<br></code></pre></td></tr></table></figure>
 
 <p class='item-img' data-src='https://github.com/TO-Hitori/HBIL/blob/main/diffuser-doc/lora-anime.jpg?raw=true'><img src="https://github.com/TO-Hitori/HBIL/blob/main/diffuser-doc/lora-anime.jpg?raw=true" alt="lora-anime.jpg"></p>
-<h2 id="使用多个LoRA推理"><a href="#使用多个LoRA推理" class="headerlink" title="使用多个LoRA推理"></a>使用多个LoRA推理</h2><p>通过adapter_name参数，使用另一个 Adqapter 进行推理真的很容易！加载经过微调以生成像素艺术图像的 <a target="_blank" rel="noopener" href="https://huggingface.co/nerijs/pixel-art-xl/tree/main">nerijs&#x2F;pixel-art-xl</a> 适配器，并将其称为“pixel”。</p>
+<h2 id="使用多个LoRA推理"><a href="#使用多个LoRA推理" class="headerlink" title="使用多个LoRA推理"></a>使用多个LoRA推理</h2><p>通过adapter_name参数，使用另一个 Adqapter 进行推理真的很容易！加载经过微调以生成像素艺术图像的 <a target="_blank" rel="noopener" href="https://huggingface.co/nerijs/pixel-art-xl/tree/main">nerijs/pixel-art-xl</a> 适配器，并将其称为“pixel”。</p>
 <p>管道自动将第一个加载的适配器（“anime”）设置为活动适配器，但您可以使用 set_adapters() 方法激活“pixel”适配器：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">lora_path_2 = <span class="hljs-string">r&#x27;D:\MyCode\Torch_Deom\LoRA\pixel-art-xl&#x27;</span><br>pipe.load_lora_weights(lora_path_2 , weight_name=<span class="hljs-string">&quot;pixel-art-xl.safetensors&quot;</span>, adapter_name=<span class="hljs-string">&quot;pixel&quot;</span>)<br>pipe.set_adapters(<span class="hljs-string">&quot;pixel&quot;</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">lora_path_2 = <span class="hljs-string">r'D:\MyCode\Torch_Deom\LoRA\pixel-art-xl'</span><br>pipe.load_lora_weights(lora_path_2 , weight_name=<span class="hljs-string">"pixel-art-xl.safetensors"</span>, adapter_name=<span class="hljs-string">"pixel"</span>)<br>pipe.set_adapters(<span class="hljs-string">"pixel"</span>)<br></code></pre></td></tr></table></figure>
 
 <p>确保在生成像素艺术图像的提示中包含 token <code>pixel-art</code>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">prompt = <span class="hljs-string">&quot;a hacker with a hoodie, pixel-art&quot;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">prompt = <span class="hljs-string">"a hacker with a hoodie, pixel-art"</span><br></code></pre></td></tr></table></figure>
 
 <p class='item-img' data-src='https://github.com/TO-Hitori/HBIL/blob/main/diffuser-doc/lora-pixel.jpg?raw=true'><img src="https://github.com/TO-Hitori/HBIL/blob/main/diffuser-doc/lora-pixel.jpg?raw=true" alt="lora-pixel.jpg"></p>
 <h2 id="合并多个LoRA进行推理"><a href="#合并多个LoRA进行推理" class="headerlink" title="合并多个LoRA进行推理"></a>合并多个LoRA进行推理</h2><p>您还可以合并不同的适配器检查点以进行推理，以将它们的风格混合在一起。</p>
 <p>再次使用 <code>set_adapters()</code> 方法激活 <code>anime</code> 和 <code>pixel</code> LoRA并指定它们应如何合并的权重。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">pipe.set_adapters([<span class="hljs-string">&quot;pixel&quot;</span>, <span class="hljs-string">&quot;toy&quot;</span>], adapter_weights=[<span class="hljs-number">0.5</span>, <span class="hljs-number">1.0</span>])<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">pipe.set_adapters([<span class="hljs-string">"pixel"</span>, <span class="hljs-string">"toy"</span>], adapter_weights=[<span class="hljs-number">0.5</span>, <span class="hljs-number">1.0</span>])<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>diffusion社区中的 LoRA 检查点几乎都是通过 DreamBooth 获得的。 </p>
 <p>DreamBooth 训练通常依赖于输入文本提示中的“触发”词，以使生成结果看起来符合预期。当您组合多个 LoRA 检查点时，务必确保相应 LoRA 检查点的触发词出现在输入文本提示中。</p>
 <p><a target="_blank" rel="noopener" href="https://huggingface.co/docs/diffusers/main/en/training/dreambooth">DreamBooth (huggingface.co)</a></p>
 </blockquote>
-<p>请记住在生成图像的 prompt 中使用 sdxl_finetuning_anime 和 nerijs&#x2F;pixel-art-xl 的触发词（这些可以在其存储库中找到）</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">prompt = <span class="hljs-string">&quot;anime style cartoon of a hacker with a hoodie, pixel-art&quot;</span><br></code></pre></td></tr></table></figure>
+<p>请记住在生成图像的 prompt 中使用 sdxl_finetuning_anime 和 nerijs/pixel-art-xl 的触发词（这些可以在其存储库中找到）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">prompt = <span class="hljs-string">"anime style cartoon of a hacker with a hoodie, pixel-art"</span><br></code></pre></td></tr></table></figure>
 
 <p class='item-img' data-src='https://github.com/TO-Hitori/HBIL/blob/main/diffuser-doc/lora-anime-pixel.jpg?raw=true'><img src="https://github.com/TO-Hitori/HBIL/blob/main/diffuser-doc/lora-anime-pixel.jpg?raw=true" alt="lora-anime-pixel.jpg"></p>
 <p>正如您所看到的，该模型生成了一个混合了两个适配器特征的图像。</p>
@@ -80,19 +192,19 @@ document.addEventListener("pjax:complete", reset);reset()})</script><meta name="
 <p><a target="_blank" rel="noopener" href="https://huggingface.co/docs/diffusers/using-diffusers/merge_loras">Merge LoRAs (huggingface.co)</a></p>
 </blockquote>
 <h2 id="管理-LoRA"><a href="#管理-LoRA" class="headerlink" title="管理 LoRA"></a>管理 LoRA</h2><p>要恢复仅使用一个 LoRA，请通过 Pipeline 使用 <code>set_adapters()</code> 方法激活“anime”适配器：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">pipe.set_adapters(<span class="hljs-string">&quot;anime&quot;</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">pipe.set_adapters(<span class="hljs-string">"anime"</span>)<br></code></pre></td></tr></table></figure>
 
 <p>要完全禁用所有 LoRA，请通过 Pipeline 使用<code>disable_lora()</code>方法恢复基本模型。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">pipe.disable_lora()<br></code></pre></td></tr></table></figure>
 
 <p>使用 <code>get_active_adapters()</code> 方法检查活动的 LoRA 的列表：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">active_adapters = pipe.get_active_adapters()<br><span class="hljs-built_in">print</span>(active_adapters)<br><br>[<span class="hljs-string">&#x27;pixel&#x27;</span>, <span class="hljs-string">&#x27;anime&#x27;</span>]<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">active_adapters = pipe.get_active_adapters()<br><span class="hljs-built_in">print</span>(active_adapters)<br><br>[<span class="hljs-string">'pixel'</span>, <span class="hljs-string">'anime'</span>]<br></code></pre></td></tr></table></figure>
 
 <p>使用 <code>get_list_adapters()</code> 获取每个 pipeline 组件的Adapter：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">list_adapters_component_wise = pipe.get_list_adapters()<br><span class="hljs-built_in">print</span>(list_adapters_component_wise)<br><br>&#123;<span class="hljs-string">&#x27;unet&#x27;</span>: [<span class="hljs-string">&#x27;anime&#x27;</span>, <span class="hljs-string">&#x27;pixel&#x27;</span>]&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">list_adapters_component_wise = pipe.get_list_adapters()<br><span class="hljs-built_in">print</span>(list_adapters_component_wise)<br><br>{<span class="hljs-string">'unet'</span>: [<span class="hljs-string">'anime'</span>, <span class="hljs-string">'pixel'</span>]}<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="Next"><a href="#Next" class="headerlink" title="Next"></a>Next</h2><p><a target="_blank" rel="noopener" href="https://huggingface.co/docs/diffusers/using-diffusers/merge_loras">Merge LoRAs (huggingface.co)</a></p>
 <p><a target="_blank" rel="noopener" href="https://huggingface.co/docs/peft/conceptual_guides/adapter#low-rank-adaptation-lora">Adapters (huggingface.co)</a></p>
-<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2024/04/10/5.%20%E5%8A%A0%E9%80%9F%20T2I%20%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%8E%A8%E7%90%86/">← 下一篇 5.加速 T2I 扩散模型的推理</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2024/04/09/3.%20%E8%AE%AD%E7%BB%83Diffusion%20Model/">3.训练diffusion model 上一篇 →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="文章目录">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">TO-Hitori</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BD%BD%E5%85%A5-LoRA-%E8%BF%9B%E8%A1%8C%E6%8E%A8%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">载入 LoRA 进行推理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%8D%95%E4%B8%AALoRA%E6%8E%A8%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">使用单个LoRA推理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%A4%9A%E4%B8%AALoRA%E6%8E%A8%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">使用多个LoRA推理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E5%A4%9A%E4%B8%AALoRA%E8%BF%9B%E8%A1%8C%E6%8E%A8%E7%90%86"><span class="toc-number">1.3.</span> <span class="toc-text">合并多个LoRA进行推理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%A1%E7%90%86-LoRA"><span class="toc-number">1.4.</span> <span class="toc-text">管理 LoRA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Next"><span class="toc-number">1.5.</span> <span class="toc-text">Next</span></a></li></ol></li></ol></div></div><footer><nobr>构建自 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> 使用主题 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> 主题作者 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2024/04/10/5.%20%E5%8A%A0%E9%80%9F%20T2I%20%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%8E%A8%E7%90%86/">← Next 5.加速 T2I 扩散模型的推理</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2024/04/09/3.%20%E8%AE%AD%E7%BB%83Diffusion%20Model/">3.训练diffusion model Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">TO-Hitori</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BD%BD%E5%85%A5-LoRA-%E8%BF%9B%E8%A1%8C%E6%8E%A8%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">载入 LoRA 进行推理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%8D%95%E4%B8%AALoRA%E6%8E%A8%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">使用单个LoRA推理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%A4%9A%E4%B8%AALoRA%E6%8E%A8%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">使用多个LoRA推理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E5%A4%9A%E4%B8%AALoRA%E8%BF%9B%E8%A1%8C%E6%8E%A8%E7%90%86"><span class="toc-number">1.3.</span> <span class="toc-text">合并多个LoRA进行推理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%A1%E7%90%86-LoRA"><span class="toc-number">1.4.</span> <span class="toc-text">管理 LoRA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Next"><span class="toc-number">1.5.</span> <span class="toc-text">Next</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
