@@ -1,0 +1,299 @@
+<!DOCTYPE html><html lang="zh-CN" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>水下图像增强数据集及算法 | TO-Hitori</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - $1 行","copy":"复制"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: '确认'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.1.1"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>水下图像增强数据集及算法</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2024-08-09T10:42:30.000Z" id="date"> 2024-08-09</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2024-08-09T13:50:33.621Z" id="updated"> 2024-08-09</time></div></span><br><span>文章总字数: <div class="control">301</div></span><br><span>预计阅读时间: <div class="control">1 分钟</div></span></div></div><hr><div id="post-content"><h1 id="Dateset"><a href="#Dateset" class="headerlink" title="Dateset"></a>Dateset</h1><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>MemSize</th>
+<th>Resolution</th>
+<th>Contain</th>
+<th>Download</th>
+<th>Paper</th>
+<th>OK</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>UVEB</td>
+<td>126GB</td>
+<td>(3840,1240),(1920,1080),</td>
+<td>1208 video pairs</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/yzbouc/UVEB?tab=readme-ov-file">yzbouc/UVEB (github.com)</a></td>
+<td>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2404.14542">2404.14542] UVEB: A Large-scale Benchmark and Baseline Towards Real-World Underwater Video Enhancement (arxiv.org)</a></td>
+<td></td>
+</tr>
+<tr>
+<td>LSUI</td>
+<td>469MB</td>
+<td>(300,400),(1920,1080),</td>
+<td>4279 image pairs</td>
+<td>[UIE Project Page (lintaopeng.github.io)](<a target="_blank" rel="noopener" href="https://lintaopeng.github.io/_pages/UIE">https://lintaopeng.github.io/_pages/UIE</a> Project Page.html)</td>
+<td>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2111.11843">2111.11843] U-shape Transformer for Underwater Image Enhancement (arxiv.org)</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td>UIEB</td>
+<td>1.41GB</td>
+<td>(1280,800),(1000,750),(640,480),</td>
+<td>890 image pairs</td>
+<td><a target="_blank" rel="noopener" href="https://li-chongyi.github.io/proj_benchmark.html">An Underwater Image Enhancement Benchmark Dataset and Beyond (li-chongyi.github.io)</a></td>
+<td>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1901.05495v1">1901.05495v1] An Underwater Image Enhancement Benchmark Dataset and Beyond (arxiv.org)</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td>NYU-V2</td>
+<td>4.1GB</td>
+<td>(640, 480)</td>
+<td>50688 (RGB -Depth) image pairs 用于深度估计的数据集，可以仿真为水下数据集：<a target="_blank" rel="noopener" href="https://github.com/VITA-Group/All-In-One-Underwater-Image-Enhancement-using-Domain-Adversarial-Learning/blob/master/dataset_synthesis/nyu_uw_syn_script.py">dataset_synthesis</a></td>
+<td><a target="_blank" rel="noopener" href="https://cs.nyu.edu/~fergus/datasets/nyu_depth_v2.html#raw_parts">NYU Depth V2 « Nathan Silberman</a></td>
+<td>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1905.13342">1905.13342] All-In-One Underwater Image Enhancement using Domain-Adversarial Learning (arxiv.org)</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td>EUVP</td>
+<td>1.15 GB</td>
+<td>(256, 256),(256, 256),(320, 240)</td>
+<td>5550(Underwater Dark) + 3700(Underwater ImageNet) + 2185(Underwater Scenes) image pairs</td>
+<td><a target="_blank" rel="noopener" href="https://irvlab.cs.umn.edu/resources/euvp-dataset">The EUVP dataset | Minnesota Interactive Robotics and Vision Laboratory (umn.edu)</a></td>
+<td>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1903.09766">1903.09766] Fast Underwater Image Enhancement for Improved Visual Perception (arxiv.org)</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td>underwater_imagenet datase (UGAN)</td>
+<td>428 MB</td>
+<td>(256, 256)</td>
+<td>6,128 image pairs</td>
+<td><a target="_blank" rel="noopener" href="https://drive.google.com/file/d/1LOM-2A1BSLaFjCY2EEK3DA2Lo37rNw-7/view">underwater_imagenet.zip - Google 云端硬盘</a></td>
+<td>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1801.04011">1801.04011] Enhancing Underwater Imagery using Generative Adversarial Networks (arxiv.org)</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td>SUIM-E</td>
+<td></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/trentqq/SUIM-E">trentqq/SUIM-E (github.com)</a></td>
+<td>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2201.02832">2201.02832] SGUIE-Net: Semantic Attention Guided Underwater Image Enhancement with Multi-Scale Perception (arxiv.org)</a></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="Image-Enhancement-Restoration"><a href="#Image-Enhancement-Restoration" class="headerlink" title="Image Enhancement / Restoration"></a>Image Enhancement / Restoration</h3><ul>
+<li>SQUID dataset: <a target="_blank" rel="noopener" href="http://csms.haifa.ac.il/profiles/tTreibitz/datasets/ambient_forwardlooking/index.html">Data</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1811.01343">Paper</a>, <a target="_blank" rel="noopener" href="https://github.com/danaberman/underwater-hl">Code</a>. (Underwater-HL)</li>
+<li>U-45: <a target="_blank" rel="noopener" href="https://github.com/IPNUISTlegal/underwater-test-dataset-U45-">Data</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1906.06819">Paper</a>. (UDAE)</li>
+<li>Jamaica port royal: <a target="_blank" rel="noopener" href="https://github.com/kskin/data">Data</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1702.07392">Paper</a>, <a target="_blank" rel="noopener" href="https://github.com/kskin/WaterGAN/">Code</a>. (Water-GAN)</li>
+<li>Virtual periscope: <a target="_blank" rel="noopener" href="http://webee.technion.ac.il/~yoav/research/random_distort.html">Data</a>, <a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/7448905">Paper</a>.</li>
+<li>Color restoration: <a target="_blank" rel="noopener" href="http://csms.haifa.ac.il/profiles/tTreibitz/datasets/ambient_forwardlooking/index.html">Data</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1811.01343">Paper</a>, <a target="_blank" rel="noopener" href="https://github.com/danaberman/underwater-hl">Code</a>.</li>
+<li>TURBID data: <a target="_blank" rel="noopener" href="http://amandaduarte.com.br/turbid/">Data</a>, <a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/7485524">Paper</a>.</li>
+<li>OceanDark dataset: <a target="_blank" rel="noopener" href="https://sites.google.com/view/oceandark/home">Data</a>, <a target="_blank" rel="noopener" href="https://www.mdpi.com/2313-433X/5/10/79">Paper</a>.</li>
+</ul>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2024/08/01/Log/">Log 上一篇 →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="文章目录">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">TO-Hitori</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dateset"><span class="toc-number">1.</span> <span class="toc-text">Dateset</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Image-Enhancement-Restoration"><span class="toc-number">1.0.1.</span> <span class="toc-text">Image Enhancement &#x2F; Restoration</span></a></li></ol></li></ol></li></ol></div></div><footer><nobr>构建自 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> 使用主题 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> 主题作者 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
