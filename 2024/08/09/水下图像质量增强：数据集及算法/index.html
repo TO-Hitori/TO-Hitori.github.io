@@ -10,13 +10,13 @@
   font-family: 'JetBrains Mono';
   src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
 }
-</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - $1 行","copy":"复制"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
  document.documentElement.setAttribute('theme-mode', 'light')
 if (window.localStorage.getItem('theme-mode') === 'dark')
  document.documentElement.setAttribute('theme-mode', 'dark')</script><style>:root {
  --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
  --light-background: url('/img/bk.jpg');
- --theme-encrypt-confirm: '确认'
+ --theme-encrypt-confirm: 'confirm'
 }</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
 window.mermaid = mermaid;
 code.paintMermaid();
@@ -148,7 +148,33 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>水下图像增强数据集及算法</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2024-08-09T10:42:30.000Z" id="date"> 2024-08-09</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2024-08-09T13:50:33.621Z" id="updated"> 2024-08-09</time></div></span><br><span>文章总字数: <div class="control">301</div></span><br><span>预计阅读时间: <div class="control">1 分钟</div></span></div></div><hr><div id="post-content"><h1 id="Dateset"><a href="#Dateset" class="headerlink" title="Dateset"></a>Dateset</h1><table>
+</style></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>水下图像增强数据集及算法</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2024-08-09T10:42:30.000Z" id="date"> 2024-08-09</time></div></span><br><span>Last Update: <div class="control"><time datetime="2024-08-10T09:41:56.963Z" id="updated"> 2024-08-10</time></div></span><br><span>Word Count: <div class="control">816</div></span><br><span>Read Time: <div class="control">3 min</div></span></div></div><hr><div id="post-content"><h1 id="Dateset"><a href="#Dateset" class="headerlink" title="Dateset"></a>Dateset</h1><p>SOTA算法生成：</p>
+<ul>
+<li><p><strong>UIEB</strong> ：使用 12 种算法生成参考图像。然后由 50 名志愿者投票选出每个场景的最佳增强效果作为最终参考图像。</p>
+</li>
+<li><p><strong>LSUI</strong>：18个UIE算法和20名志愿者</p>
+</li>
+<li><p><strong>SAUD</strong>： 提出了一个主观注释的基准，其中包含真实世界的原始水下图像和 10 种不同 UIE 算法下的可用排名分数</p>
+</li>
+</ul>
+<p>由域转换算法生成：</p>
+<ul>
+<li><strong>EUVP</strong> 和 <strong>UFO-120</strong> 将不成对的失真图像和参考图像视为两个域。 EUVP 和 UFO-120 中的图像对是通过具有循环一致性约束的无监督域变换算法（CycleGAN）生成的</li>
+</ul>
+<p>光场渲染：</p>
+<ul>
+<li><strong>UWNR</strong> <a target="_blank" rel="noopener" href="https://github.com/Ephemeral182/UWNR?tab=readme-ov-file">link</a> 设计了一种光场保留机制，将风格从自然存在的水下图像转移到客观生成的图像。 UWNR采用数据驱动策略，这意味着它可以避免物理模型复杂性带来的精度限制</li>
+</ul>
+<p>海底图像捕捉系统采集:</p>
+<ul>
+<li><strong>RUIE</strong> 通过在海水下建立多视点成像系统，构建了自然光下的水下基准。 RUIE的场景展示了一个自然的海洋生态系统，包含各种海洋生物，如鱼类、海胆、海参和扇贝</li>
+<li><strong>UVEB</strong>：第一个大规模高分辨率水下视频增强基准，以促进水下的发展。包含1,308对视频序列和超过453,000个高分辨率，具有38%超高清 (UHD) 4K 帧对。 UVEB来自多个国家，包含多种场景和视频降级类型，适应多样化、复杂的水下环境。</li>
+</ul>
+<p>物理模型合成</p>
+<ul>
+<li><strong>SUID</strong>、<strong>UWGAN</strong>和 <strong>WaterGAN</strong> 使用物理模型来估计描述成像过程的参数，使用NYU-D等RGB-D数据集</li>
+</ul>
+<table>
 <thead>
 <tr>
 <th>Name</th>
@@ -157,26 +183,17 @@ mjx-container[display="true"] + br {
 <th>Contain</th>
 <th>Download</th>
 <th>Paper</th>
-<th>OK</th>
+<th>ok</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>UVEB</td>
-<td>126GB</td>
-<td>(3840,1240),(1920,1080),</td>
-<td>1208 video pairs</td>
-<td><a target="_blank" rel="noopener" href="https://github.com/yzbouc/UVEB?tab=readme-ov-file">yzbouc/UVEB (github.com)</a></td>
-<td>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2404.14542">2404.14542] UVEB: A Large-scale Benchmark and Baseline Towards Real-World Underwater Video Enhancement (arxiv.org)</a></td>
+<td><strong>SOTA算法生成</strong></td>
 <td></td>
-</tr>
-<tr>
-<td>LSUI</td>
-<td>469MB</td>
-<td>(300,400),(1920,1080),</td>
-<td>4279 image pairs</td>
-<td>[UIE Project Page (lintaopeng.github.io)](<a target="_blank" rel="noopener" href="https://lintaopeng.github.io/_pages/UIE">https://lintaopeng.github.io/_pages/UIE</a> Project Page.html)</td>
-<td>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2111.11843">2111.11843] U-shape Transformer for Underwater Image Enhancement (arxiv.org)</a></td>
-<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>UIEB</td>
@@ -184,17 +201,35 @@ mjx-container[display="true"] + br {
 <td>(1280,800),(1000,750),(640,480),</td>
 <td>890 image pairs</td>
 <td><a target="_blank" rel="noopener" href="https://li-chongyi.github.io/proj_benchmark.html">An Underwater Image Enhancement Benchmark Dataset and Beyond (li-chongyi.github.io)</a></td>
-<td>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1901.05495v1">1901.05495v1] An Underwater Image Enhancement Benchmark Dataset and Beyond (arxiv.org)</a></td>
+<td>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1901.05495v1">1901.05495v1] </a></td>
 <td>1</td>
 </tr>
 <tr>
-<td>NYU-V2</td>
-<td>4.1GB</td>
-<td>(640, 480)</td>
-<td>50688 (RGB -Depth) image pairs 用于深度估计的数据集，可以仿真为水下数据集：<a target="_blank" rel="noopener" href="https://github.com/VITA-Group/All-In-One-Underwater-Image-Enhancement-using-Domain-Adversarial-Learning/blob/master/dataset_synthesis/nyu_uw_syn_script.py">dataset_synthesis</a></td>
-<td><a target="_blank" rel="noopener" href="https://cs.nyu.edu/~fergus/datasets/nyu_depth_v2.html#raw_parts">NYU Depth V2 « Nathan Silberman</a></td>
-<td>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1905.13342">1905.13342] All-In-One Underwater Image Enhancement using Domain-Adversarial Learning (arxiv.org)</a></td>
+<td>LSUI</td>
+<td>469MB</td>
+<td>(300,400),(1920,1080),</td>
+<td>4279 image pairs</td>
+<td>[UIE Project Page (lintaopeng.github.io)](<a target="_blank" rel="noopener" href="https://lintaopeng.github.io/_pages/UIE">https://lintaopeng.github.io/_pages/UIE</a> Project Page.html)</td>
+<td>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2111.11843">2111.11843] </a></td>
 <td>1</td>
+</tr>
+<tr>
+<td>SAUD</td>
+<td>1.04GB</td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/yia-yuese/SAUD-Dataset">yia-yuese/SAUD-Dataset (github.com)</a></td>
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9749233">link</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>由域转换算法生成</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>EUVP</td>
@@ -202,8 +237,107 @@ mjx-container[display="true"] + br {
 <td>(256, 256),(256, 256),(320, 240)</td>
 <td>5550(Underwater Dark) + 3700(Underwater ImageNet) + 2185(Underwater Scenes) image pairs</td>
 <td><a target="_blank" rel="noopener" href="https://irvlab.cs.umn.edu/resources/euvp-dataset">The EUVP dataset | Minnesota Interactive Robotics and Vision Laboratory (umn.edu)</a></td>
-<td>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1903.09766">1903.09766] Fast Underwater Image Enhancement for Improved Visual Perception (arxiv.org)</a></td>
+<td>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1903.09766">1903.09766] </a></td>
 <td>1</td>
+</tr>
+<tr>
+<td>UFO-120</td>
+<td>235.4MB</td>
+<td>(640, 480),(320, 240)</td>
+<td>1500 image pairs-(hr/lrd/mask)超分和分隔</td>
+<td><a target="_blank" rel="noopener" href="https://drive.google.com/drive/folders/153laK_iRsyKkWN_qZztAyH3309WNKqsI">UFO-120 - Google 云端硬盘</a></td>
+<td>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2002.01155">2002.01155] </a></td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>光场渲染</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LNRUD (UWNR)</td>
+<td></td>
+<td></td>
+<td>50000张干净图像和由5000张真实水下场景图像合成的50000张水下图像。</td>
+<td><a target="_blank" rel="noopener" href="https://drive.google.com/file/d/19cj8QI9SQhJgc4lxPLxZoTislTN7xLBF/view">LNRUD.zip - Google 云端硬盘</a></td>
+<td>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2203.11006v2">2203.11006v2]UWNR </a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>海底图像捕捉系统采集</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>RUIE</td>
+<td>124 MB</td>
+<td>(400,300)</td>
+<td>UCCS:100  UIQS: 726  UTTS:60</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/dlut-dimt/Realworld-Underwater-Image-Enhancement-RUIE-Benchmark">RUIE</a></td>
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/8949763">link</a></td>
+<td>1</td>
+</tr>
+<tr>
+<td>UVEB</td>
+<td>126GB</td>
+<td>(3840,1240),(1920,1080),</td>
+<td>1208 video pairs</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/yzbouc/UVEB?tab=readme-ov-file">yzbouc/UVEB (github.com)</a></td>
+<td>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2404.14542">2404.14542] UVEB</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>物理模型合成</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SUID</td>
+<td></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://ieee-dataport.org/open-access/suid-synthetic-underwater-image-dataset">SUID</a></td>
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9130676">link</a></td>
+<td></td>
+</tr>
+<tr>
+<td>UWGAN</td>
+<td></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/infrontofme/UWGAN_UIE">infrontofme/UWGAN</a></td>
+<td>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1912.10269">1912.10269] UWGAN</a></td>
+<td></td>
+</tr>
+<tr>
+<td>WaterGAN</td>
+<td>13GB</td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/kskin/WaterGAN">kskin/WaterGAN</a>，<a target="_blank" rel="noopener" href="https://github.com/kskin/data?tab=readme-ov-file">kskin/data (github.com)</a></td>
+<td>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1702.07392">1702.07392] WaterGAN</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>其他</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>underwater_imagenet datase (UGAN)</td>
@@ -215,85 +349,40 @@ mjx-container[display="true"] + br {
 <td>1</td>
 </tr>
 <tr>
-<td>SUIM-E</td>
+<td>U-45</td>
+<td>94.3 MB</td>
+<td>(256, 256)</td>
+<td>45 test images</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/IPNUISTlegal/underwater-test-dataset-U45-/tree/master">IPNUISTlegal/underwater-test-dataset-U45- (github.com)</a></td>
 <td></td>
-<td></td>
-<td></td>
-<td><a target="_blank" rel="noopener" href="https://github.com/trentqq/SUIM-E">trentqq/SUIM-E (github.com)</a></td>
-<td>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2201.02832">2201.02832] SGUIE-Net: Semantic Attention Guided Underwater Image Enhancement with Multi-Scale Perception (arxiv.org)</a></td>
-<td></td>
+<td>1</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>OceanDark</td>
+<td>35.0 MB</td>
+<td>（1280, 720）</td>
+<td>183 test images</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/tunai/l2uwe/tree/master">L^2UWE (CVPRW 2020) (github.com)</a></td>
+<td><a target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content_CVPRW_2020/html/w31/Marques_L2UWE_A_Framework_for_the_Efficient_Enhancement_of_Low-Light_Underwater_CVPRW_2020_paper.html">CVPR 2020 Open Access Repository (thecvf.com)</a></td>
+<td>1</td>
 </tr>
 </tbody></table>
-<h3 id="Image-Enhancement-Restoration"><a href="#Image-Enhancement-Restoration" class="headerlink" title="Image Enhancement / Restoration"></a>Image Enhancement / Restoration</h3><ul>
-<li>SQUID dataset: <a target="_blank" rel="noopener" href="http://csms.haifa.ac.il/profiles/tTreibitz/datasets/ambient_forwardlooking/index.html">Data</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1811.01343">Paper</a>, <a target="_blank" rel="noopener" href="https://github.com/danaberman/underwater-hl">Code</a>. (Underwater-HL)</li>
-<li>U-45: <a target="_blank" rel="noopener" href="https://github.com/IPNUISTlegal/underwater-test-dataset-U45-">Data</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1906.06819">Paper</a>. (UDAE)</li>
-<li>Jamaica port royal: <a target="_blank" rel="noopener" href="https://github.com/kskin/data">Data</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1702.07392">Paper</a>, <a target="_blank" rel="noopener" href="https://github.com/kskin/WaterGAN/">Code</a>. (Water-GAN)</li>
-<li>Virtual periscope: <a target="_blank" rel="noopener" href="http://webee.technion.ac.il/~yoav/research/random_distort.html">Data</a>, <a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/7448905">Paper</a>.</li>
-<li>Color restoration: <a target="_blank" rel="noopener" href="http://csms.haifa.ac.il/profiles/tTreibitz/datasets/ambient_forwardlooking/index.html">Data</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1811.01343">Paper</a>, <a target="_blank" rel="noopener" href="https://github.com/danaberman/underwater-hl">Code</a>.</li>
-<li>TURBID data: <a target="_blank" rel="noopener" href="http://amandaduarte.com.br/turbid/">Data</a>, <a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/7485524">Paper</a>.</li>
-<li>OceanDark dataset: <a target="_blank" rel="noopener" href="https://sites.google.com/view/oceandark/home">Data</a>, <a target="_blank" rel="noopener" href="https://www.mdpi.com/2313-433X/5/10/79">Paper</a>.</li>
+<p><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9130676">https://ieeexplore.ieee.org/abstract/document/9130676</a></p>
+<h1 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h1><blockquote>
+<ul>
+<li><p>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2405.19684">2405.19684] A Comprehensive Survey on Underwater Image Enhancement Based on Deep Learning (arxiv.org)</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/YuZhao1999/UIE">YuZhao1999/UIE: This is a resouce list for underwater image enhancement (github.com)</a></p>
+</li>
 </ul>
-<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2024/08/01/Log/">Log 上一篇 →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="文章目录">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">TO-Hitori</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dateset"><span class="toc-number">1.</span> <span class="toc-text">Dateset</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Image-Enhancement-Restoration"><span class="toc-number">1.0.1.</span> <span class="toc-text">Image Enhancement &#x2F; Restoration</span></a></li></ol></li></ol></li></ol></div></div><footer><nobr>构建自 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> 使用主题 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> 主题作者 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
+</blockquote>
+<p>分类：</p>
+<ul>
+<li>Network achitecture</li>
+<li>Learning strategy</li>
+<li>Learning stage</li>
+<li>Auxiliary tasks,</li>
+<li>Domain perspective</li>
+<li>Disentanglement fusion</li>
+</ul>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2024/08/01/Log/">Log Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">TO-Hitori</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dateset"><span class="toc-number">1.</span> <span class="toc-text">Dateset</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Method"><span class="toc-number">2.</span> <span class="toc-text">Method</span></a></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
