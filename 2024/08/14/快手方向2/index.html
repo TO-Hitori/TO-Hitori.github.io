@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="zh-CN" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>TO-Hitori</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.1.1"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1></h1></div><hr><div id="post-content"><h2 id="基于扩散模型的视频超分辨率"><a href="#基于扩散模型的视频超分辨率" class="headerlink" title="基于扩散模型的视频超分辨率"></a>基于扩散模型的视频超分辨率</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>基于扩散模型的视频超分辨率任务存在两个难点：一是减轻扩散过程中的随机性以保留从低分辨率到高分辨率视频的视觉外观，二是需要保持视频帧之间的时间一致性。本研究通过在扩散过程中学习低分辨率视频的时空引导来来解决这两个问题。算法的整体流程如图 1 所示：</p>
+<ol>
+<li>首先使用视频上采样模块来提高输入的低分辨率视频的分辨率。$X_L \to X_u$ </li>
+<li>接下来，上采样的得到的视频 $X_u$ 被输入 VAE 编码器进行对视频特征的提取和潜在编码的计算。</li>
+<li>之后，利用嵌入在Unet的解码端和VAE解码器空间特征适配（SFA）和时间特征对齐（TFA）模块来校准潜在空间视频的去噪过程和视频像素空间的重建过程。得到解码后的高分辨率视频 $X_d$ 。</li>
+<li>最后，视频精炼器通过参考上采样视频 $X_u$ 来调整解码后的高分辨率视频，以在合成质量和保真度之间取得良好的权衡，得到最终的超分视频 $X_H$ 。</li>
+</ol>
+<p>![[图1 2.png]]</p>
+<h3 id="3-1-视频上采样模块-Video-Upscaler"><a href="#3-1-视频上采样模块-Video-Upscaler" class="headerlink" title="3.1 视频上采样模块 Video Upscaler"></a>3.1 视频上采样模块 Video Upscaler</h3><p>大多数现有的视频超分辨率方法首先通过上采样操作提升低分辨率视频的分辨率到目标分辨率。然而，这些方法所采用的上采样操作，例如双线性和双三次采样，可能会破坏低分辨率视频帧中的原始视觉模式，对后续的视频增强产生负面影响</p>
+<p>因此，本研究提出了一种基于 Transformer 的视频上采样模块，用于将输入的低分辨率视频 $X_L$ 转化为更准确的上采样视频 $X_u$，提升扩散模型生成的高分辨率视频的质量，该模块的具体结构如图 2 所示。</p class='item-img' data-src='D:\BASIC_FILE\PICTURE\快手大模型\图2.png'><img src="D:\BASIC_FILE\PICTURE\快手大模型\图2.png" alt="图2" style="zoom:80%;" />
+
+<p>该模块由两个级联的时间域交互自注意力（Temporal mutual self attention，TMSA）组成，用于在时间上聚合视频特征，之后是一个 pixel-shuffle 层，用于通过特征重塑来提高视频的分辨率。</p>
+<h3 id="3-2-空间特征适配模块-SFA"><a href="#3-2-空间特征适配模块-SFA" class="headerlink" title="3.2 空间特征适配模块 SFA"></a>3.2 空间特征适配模块 SFA</h3><p>扩散模型固有的随机性可能会导致图像超分辨率中纹理细节的失真。为了缓解这个问题，本研究引入了一个空间特征适应（Spatial Feature Adaptation，SFA）模块，该模块从输入的低分辨率视频中动态学习像素级指导以校准扩散过程。该模块插入在扩散模型的 Unet    的解码端中校正潜在空间去噪过程，插入在VAE中的解码器中引导像素空间视频重建。该模块的具体结构如图 3 所示：</p>
+<p class='item-img' data-src='D:\BASIC_FILE\PICTURE\快手大模型\图3.png'><img src="D:\BASIC_FILE\PICTURE\快手大模型\图3.png" alt="图3"></p>
+<p>输入的低分辨率视频 $X_L$ 被上采样为 $X_u$，VAE 编码器首先将 $X_u $编码为视频潜在空间 $Z$ 。接下来利用基于卷积神经网络的潜在编码器 $\varepsilon_z $ 潜在特征图 $G &#x3D; \varepsilon_z(Z)$，进一步用于指导 UNet 解码器中的特征学习。</p>
+<p>空间特征适配模块的输入 $g^i$ 为特征图序列 $G$ 的一帧，$f^i$ 为 Unet 或 VAE 解码器中的特征图。该模块首先通过两个2D卷积分别计算对特征图的缩放系数矩阵 $S^i$ 和偏置系数 $M^i$ ，然后将输入的特征图进行标准化，最后通过下式计算输出特征图 $\tilde{f}^{i}$：<br>$$<br>\tilde{f}^{i}&#x3D;S^{i} \odot \frac{f^{i}-\mu^{i}}{\sigma^{i}}+M^{i}<br>$$<br>$\odot$ 表示逐元素点乘，$\mu^i$ 和 $\sigma^i$ 分别为 $f^i$ 的均值和标准差。</p>
+<h3 id="3-3-时间特征对齐模块-TFA"><a href="#3-3-时间特征对齐模块-TFA" class="headerlink" title="3.3 时间特征对齐模块 TFA"></a>3.3 时间特征对齐模块 TFA</h3><p>针对视频超分辨率逐帧超分可能会放大帧间的差异，导致内容在时间上不一致，例如对象形状变形。该问题源于仅依赖空间级超分辨率且缺乏跨帧的时间一致性建模。为了对齐视频超分辨率中的视觉内容，在UNet和VAE解码器中的每个SFA模块之后级联了一个时间特征对齐（Temporal Feature Alignment，TFA）模块，用于时间特征交互和校准。该模块的具体结构如图4所示：</p>
+<p class='item-img' data-src='D:\BASIC_FILE\PICTURE\快手大模型\图4.png'><img src="D:\BASIC_FILE\PICTURE\快手大模型\图4.png" alt="图4"></p>
+<p>对于来自 SFA 模块的特征图 $\tilde{F}$，首先将每帧的特征图划分为 $N$ 个不重叠的分辨率为 $h \times w$ 的窗口。总窗口数 $N &#x3D; \frac{HW}{hw}$ 。然后，我们将视频的 $L$ 个帧的局部窗口内的所有特征链接起来，形成特征管 $\tilde{F}<em>{tub} \in \mathbb{R}^{L \times h \times w \times C}  $。我们将每个 HR 特征管的形状调整为 $hwL \times C$ 并对其执行标准的自注意力：<br>$$<br>\begin{array}{l}<br>Q, K, V&#x3D;\operatorname{Conv} 3 \mathrm{D}\left(\tilde{F}</em>{t u b}\right), \<br>\hat{F}_{t u b}&#x3D;\operatorname{Attention}(Q, K, V),<br>\end{array}<br>$$<br>其中 $Q,K,V \in \mathbb{R}^{hwL×C}$ 都是由 3D 卷积计算得到的。在特征管上进行的自注意力可以实现不同帧之间的特征交互，从而减轻局部区域的时间特征错位。</p>
+<p>为了进一步进行时间特征校准，我们利用对应的潜在特征图组成的特征管 $G_{tub}$ 作为特征调整的辅助信息。在 $\hat{F}<em>{tub}$ 和 $G</em>{tub}$ 之间进行交叉注意力以获得输出特征管 $\bar{F}_{tub}$</p>
+<p>$$<br>\begin{array}{l}<br>Q’&#x3D;\operatorname{Conv} 3 \mathrm{D}\left(\hat{F}<em>{t u b}\right), \<br>K’,V’&#x3D;\operatorname{Conv} 3 \mathrm{D}\left(G</em>{t u b}\right) \<br>\bar{F}_{t u b}&#x3D;\operatorname{Attention}(Q, K, V),<br>\end{array}<br>$$<br>这样，UNet和VAE解码器中耦合的 SFA 和 TFA 模块不仅强调了视觉外观保留的像素级特征适应，而且还加强了时间维度的特征的交互和校准。</p>
+<h3 id="3-4-视频精炼器-Video-Refiner"><a href="#3-4-视频精炼器-Video-Refiner" class="headerlink" title="3.4 视频精炼器 Video Refiner"></a>3.4 视频精炼器 Video Refiner</h3><p class='item-img' data-src='D:\BASIC_FILE\PICTURE\快手大模型\图5.png'><img src="D:\BASIC_FILE\PICTURE\快手大模型\图5.png" alt="图5"></p>
+<p>扩散模型合成的图像可能会丢失局部区域的一些原始颜色信息。为了解决这个问题，本研究提出了一种可训练的视频精炼器，通过利用上采样的低分辨率视频 $X_u$ 的信息对来自 VAE 解码器输出的高分辨率视频 $X_d$ 进行调整。视频精炼器的结构如图 5 所示。首先将解码视频 $X_d$ 和上采样的视频 $X_u$ 沿通道维度连接起来，然后将其输入到残差块中。最后将 $X_u$ ，$X_d$ 和残差块的输出特征来生成精炼的高分辨率视频 $X_H$：<br>$$<br>X_H &#x3D; \omega X_u + (1-\omega) X_d + ResBlock(concat(X_u,X_d))<br>$$<br>其中 $\omega$ 是权衡参数。视频细化器通过特征融合来平衡原始视觉内容 $X_u$ 的和解码视频 $X_d$，有利于对原始视频的色彩保留，并在合成质量和保真度之间实现了良好的权衡。</p>
+<h3 id="3-5-训练策略"><a href="#3-5-训练策略" class="headerlink" title="3.5 训练策略"></a>3.5 训练策略</h3><p> 数据集：REDS &amp; Vid4</p>
+<p>基于Stable Diffusion，有四个训练阶段来优化整个架构：</p>
+<ol>
+<li><p>训练视频精炼器，使用 Charbonnier 损失训练视频精炼器来优化 HR 视频的视频重建<br>$$<br>L(\mathbf{I},\mathbf{I}’) &#x3D; \sqrt{\parallel \mathbf{I}’-\mathbf{I} \parallel^2 + \epsilon^2  }<br>$$</p>
+</li>
+<li><p>训练Unet中嵌入的SFA和TFA模块：按照Stable Diffusion的标准设置来训练UNet以优化插入的SFA和TFA模块。在训练时固定了原本 Stable Diffusion中 UNet 的所有参数，仅训练插入的 SFAM 和 TFAM。</p>
+</li>
+<li><p>训练VAE中嵌入的SFA和TFA模块：为了优化 VAE 解码器中的 SFA 和 TFA 模块，将HR视频的潜在空间作为输入，优化解码视频与真实HR视频之间的相似度。</p>
+</li>
+<li><p>训练视频细化器：我们冻结视频升级器、UNet 和 VAE 中的所有参数，并使用解码的 HR 视频和真实 HR 视频对训练视频细化器。</p>
+</li>
+</ol>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2024/08/23/%E4%BB%8A%E6%97%A5%E8%AE%A1%E5%88%92%EF%BC%9AGK/">← Next </a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2024/08/09/%E6%B0%B4%E4%B8%8B%E5%9B%BE%E5%83%8F%E8%B4%A8%E9%87%8F%E5%A2%9E%E5%BC%BA%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%8A%E7%AE%97%E6%B3%95/">水下图像增强数据集及算法 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">TO-Hitori</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%A7%86%E9%A2%91%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87"><span class="toc-number">1.</span> <span class="toc-text">基于扩散模型的视频超分辨率</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E8%A7%86%E9%A2%91%E4%B8%8A%E9%87%87%E6%A0%B7%E6%A8%A1%E5%9D%97-Video-Upscaler"><span class="toc-number">1.2.</span> <span class="toc-text">3.1 视频上采样模块 Video Upscaler</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E7%A9%BA%E9%97%B4%E7%89%B9%E5%BE%81%E9%80%82%E9%85%8D%E6%A8%A1%E5%9D%97-SFA"><span class="toc-number">1.3.</span> <span class="toc-text">3.2 空间特征适配模块 SFA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E6%97%B6%E9%97%B4%E7%89%B9%E5%BE%81%E5%AF%B9%E9%BD%90%E6%A8%A1%E5%9D%97-TFA"><span class="toc-number">1.4.</span> <span class="toc-text">3.3 时间特征对齐模块 TFA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E8%A7%86%E9%A2%91%E7%B2%BE%E7%82%BC%E5%99%A8-Video-Refiner"><span class="toc-number">1.5.</span> <span class="toc-text">3.4 视频精炼器 Video Refiner</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E8%AE%AD%E7%BB%83%E7%AD%96%E7%95%A5"><span class="toc-number">1.6.</span> <span class="toc-text">3.5 训练策略</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
