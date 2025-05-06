@@ -1,0 +1,106 @@
+<!DOCTYPE html><html lang="zh-CN" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>NeuS笔记 | TO-Hitori</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.1.1"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>NeuS笔记</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2025-05-06T02:11:30.000Z" id="date"> 2025-05-06</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-05-06T02:01:42.895Z" id="updated"> 2025-05-06</time></div></span><br><span>Word Count: <div class="control">1.9k</div></span><br><span>Read Time: <div class="control">8 min</div></span></div></div><hr><div id="post-content"><h1 id="NeuS-Note"><a href="#NeuS-Note" class="headerlink" title="NeuS Note"></a>NeuS Note</h1><h2 id="渲染过程"><a href="#渲染过程" class="headerlink" title="渲染过程"></a>渲染过程</h2><h3 id="场景表示"><a href="#场景表示" class="headerlink" title="场景表示"></a>场景表示</h3><p>要重建的物体场景由两个函数表示：</p>
+<ul>
+<li>$f: \mathbb{R}^3 \rightarrow \mathbb{R}$：将空间位置 $x \in \mathbb{R}^3$ 映射到物体的符号距离</li>
+<li>$c: \mathbb{R}^3 \times S^2 \rightarrow \mathbb{R}^3$：将空间位置 $x \in \mathbb{R}^3$ 和视图方向 $v \in \mathbb{S}^2$ 映射为颜色</li>
+</ul>
+<p>这两个函数都通过 MLP 实现</p>
+<p>物体的表面 $S$ 由其 SDF（signed distance function） 的零等值面表示，即<br>$$<br>\mathcal{S} &#x3D; \left{ \mathbf{x} \in \mathbb{R}^3 \mid f(\mathbf{x}) &#x3D; 0 \right}. \tag{1}<br>$$</p>
+<blockquote>
+<p>符号距离函数 SDF</p>
+<p>具体来说，SDF是一个函数，通常表示为 $F : \mathbb{R}^n \rightarrow \mathbb{R}$，其中 $n$ 是空间的维度（例如二维或三维）。对于空间中的任意一点 $p$，SDF $F(p)$ 表示从点 $p$ 到最近表面的距离，并且：</p>
+<ul>
+<li>如果 $F(p) &lt; 0$，则点 $p$ 在物体内部；</li>
+<li>如果 $F(p) &#x3D; 0$，则点 $p$ 在物体表面上；</li>
+<li>如果 $F(p) &gt; 0$，则点 $p$ 在物体外部。</li>
+</ul>
+</blockquote>
+<h3 id="S-密度"><a href="#S-密度" class="headerlink" title="S-密度"></a>S-密度</h3><p>为了将体渲染的方法用于训练 SDF 神经网络，引入概率密度函数  $\phi_s(f(x))$，称为 S-密度场：<br>$$<br>\phi_s(x) &#x3D; \frac{s e^{-sx}}{(1 + e^{-sx})^2} \tag{2}<br>$$<br>S-密度场是 Sigmoid 函数 $\Phi_s(x) &#x3D; (1 + e^{-sx})^{-1}$ 的导数，即 $\phi_s(x) &#x3D; \Phi_s’(x)$。</p>
+<blockquote>
+<p>原则上，$\phi_s(x)$ 可以是任何以 0 为中心的单峰（即钟形）密度分布；这里我们选择逻辑密度分布是因为它的计算方便。</p>
+<p>注意，$\phi_s(x)$ 的标准差由 $1&#x2F;s$ 给出，这也是一个可训练参数，即随着网络训练的收敛，$1&#x2F;s$ 接近于零。</p>
+<p>随着 $s$ 的增大，$\phi_s(x)$ 的的峰值高度会增加，宽度会变窄，也就是说随着 <em>s</em> 的增大而变得更加尖锐和集中</p>
+</blockquote>
+<p class='item-img' data-src='https://github.com/TO-Hitori/HBIL/blob/main/NeuS_Note/fig1.png?raw=true'><img src="https://github.com/TO-Hitori/HBIL/blob/main/NeuS_Note/fig1.png?raw=true" alt="fig1.png"></p>
+<p>NeuS 的主要思想是，在 S-密度场 $\phi_s(f(x))$ 的帮助下，使用体渲染通过仅以 2D 输入图像作为监督来训练 SDF 网络。在成功最小化基于这种监督的损失函数之后，期望网络编码的 SDF 的零等值面能够准确地表示重建的表面 $S$，其诱导的 S-密度 $\phi_s(f(x))$ 在表面附近呈现出显著的高值。</p>
+<blockquote>
+<p> $\phi_s(f(x))$ 越大 $\rarr$ $f(x)$越趋近于0 $\rarr$ $x$ 越趋近于物体表面</p>
+</blockquote>
+<h3 id="渲染"><a href="#渲染" class="headerlink" title="渲染"></a>渲染</h3><p>给定一个像素，我们将从该像素发出的射线表示为 ${p(t) &#x3D; o + tv \mid t \geq 0}$，其中 $o$ 是相机的中心，$v$ 是射线的单位方向向量。我们通过以下方式沿射线累积颜色：</p>
+<p>$$<br>C(\mathbf{o}, \mathbf{v}) &#x3D; \int_{0}^{+\infty} w(t)c(\mathbf{p}(t), \mathbf{v}) \mathrm{d}t, \tag{3}<br>$$</p>
+<ul>
+<li>$C(\mathbf{o}, \mathbf{v})$ 是该像素的输出颜色</li>
+<li>$w(t)$ 是点 $p(t)$ 的权重函数</li>
+<li>$c(\mathbf{p}(t), \mathbf{v})$ 是沿视图方向 $\mathbf{v}$ 的点 $\mathbf{p}(t)$ 处的颜色。</li>
+</ul>
+<h3 id="对权重函数-w-t-的要求"><a href="#对权重函数-w-t-的要求" class="headerlink" title="对权重函数 $w(t)$ 的要求"></a>对权重函数 $w(t)$ 的要求</h3><p>从 2D 图像中学习精确的 SDF 表示的关键是建立输出颜色 $C(\mathbf{o}, \mathbf{v})$ 和 SDF $f$ 之间的适当联系，即基于场景的 SDF $f$ 导出沿射线的适当权重函数 $w(t)$。</p>
+<p>权重函数 $w(t)$ 要满足以下条件：</p>
+<ol>
+<li><p><strong>无偏性</strong>。给定一条相机射线 $p(t)$，$w(t)$ 在表面交点 $p(t^*)$ 处取得局部最大值，即 $f(p(t^*)) &#x3D; 0$，也就是说，点 $p(t^*)$ 位于 SDF 的零等值面上（$x$）。</p>
+</li>
+<li><p><strong>遮挡感知</strong>。给定任意两个深度值 $t_0$ 和 $t_1$，满足 $f(t_0) &#x3D; f(t_1)$，$w(t_0) &gt; 0$，$w(t_1) &gt; 0$，且 $t_0 &lt; t_1$，有 $w(t_0) &gt; w(t_1)$。也就是说，当两个点具有相同的 SDF 值（因此具有相同的 SDF 诱导的 S-密度值）时，更靠近视点的点应该对最终输出颜色有更大的贡献。</p>
+</li>
+</ol>
+<p>一个无偏的权重函数 $w(t)$ 保证了相机射线与 SDF 的零等值面的交点对像素颜色的贡献最大。</p>
+<p>遮挡感知属性确保了当一条射线依次穿过多个表面时，渲染过程将正确地使用离相机最近的表面的颜色来计算输出颜色。</p>
+<h3 id="NeRF的朴素解"><a href="#NeRF的朴素解" class="headerlink" title="NeRF的朴素解"></a>NeRF的朴素解</h3><p>NeRF中的权重函数定义如下：<br>$$<br>w(t) &#x3D; T(t) \sigma(t),\tag{4}<br>$$</p>
+<ul>
+<li>$\sigma(t)$ 是NeRF中所谓的体密度，这里将 $\sigma(t)$ 设置为等于 S-密度值，即 $\sigma(t) &#x3D; \phi_s(f(p(t)))$ </li>
+<li>$T(t) &#x3D; \exp\left(-\int_{0}^{t} \sigma(u) \mathrm{d}u\right)$ 表示沿射线的累积透射率。</li>
+</ul>
+<p>尽管由此产生的权重函数具有遮挡感知性，但它是有偏的，因为它在重建的表面中引入了固有的误差。如图所示，权重函数 $w(t)$ 在射线达到满足 $f(p(t^*)) &#x3D; 0$ 的表面点 $p(t^*)$ 之前的某点达到局部最大值</p>
+<p class='item-img' data-src='https://github.com/TO-Hitori/HBIL/blob/main/NeuS_Note/fig2.png?raw=true'><img src="https://github.com/TO-Hitori/HBIL/blob/main/NeuS_Note/fig2.png?raw=true" alt="fig2.png"></p>
+<h3 id="NeuS对权重函数-w-t-的解"><a href="#NeuS对权重函数-w-t-的解" class="headerlink" title="NeuS对权重函数 $w(t)$ 的解"></a>NeuS对权重函数 $w(t)$ 的解</h3><p>为了介绍 NeuS 的解决方案，首先介绍一种直接使用归一化 S-密度作为权重来构建无偏权重函数的简单方法：<br>$$<br>w(t) &#x3D; \frac{\phi_s(f(\mathbf{p}(t)))}{\int_{0}^{+\infty} \phi_s(f(\mathbf{p}(u))) \mathrm{d}u}.\tag{5}<br>$$<br>这种权重函数的构造是无偏的，但不具备遮挡感知性。</p>
+<blockquote>
+<p>例如，如果射线穿透两个表面，SDF 函数 $f$ 将在射线上有两个零点，这导致权重函数 $w(t)$ 上有两个峰值，并且由此产生的权重函数将平均混合这两个表面的颜色，而不考虑遮挡。</p>
+</blockquote>
+<p>为了确保权重函数 $w(t)$ 的遮挡感知属性，我们仍将遵循NeRF 的基本框架，以一种新的方式从 S-密度定义我们的权重函数 $w(t)$：<br>$$<br>w(t) &#x3D; T(t) \rho(t), \text{ where } T(t) &#x3D; \exp\left(-\int_{0}^{t} \rho(u) \mathrm{d}u\right).\tag{6}<br>$$</p>
+<ul>
+<li>$\rho(t)$：不透明密度函数，是标准体积渲染中体积密度 $\sigma$ 的对应</li>
+</ul>
+<h4 id="不透明密度函数-rho-t-的推导"><a href="#不透明密度函数-rho-t-的推导" class="headerlink" title="不透明密度函数 $\rho(t)$ 的推导"></a>不透明密度函数 $\rho(t)$ 的推导</h4><p>首先考虑一个简单的理想情况：表面是一个远离相机的平面，且只有一个交点</p>
+<p>此时的符号距离函数 SDF 很明显是：<br>$$<br>f(p(t)) &#x3D; -|\cos(\theta)| \cdot (t - t^*)<br>$$</p>
+<ul>
+<li>焦点位置：$f(p(t^*)) &#x3D; 0$</li>
+<li>$\theta$ 是视图方向 $v$ 和向外表面法线向量 $n$ 之间的角度</li>
+</ul>
+<p>在这种假设下公式 5 确实满足要求，由于$|\cos(\theta)|$ 是一个常数，可以得出：<br>$$<br>\begin{align*}<br>w(t) &amp;&#x3D; \lim_{t^* \to +\infty} \frac{\phi_s(f(\mathbf{p}(t)))}{\int_0^{+\infty} \phi_s(f(\mathbf{p}(u))) \mathrm{d}u} \<br>&amp;&#x3D; \lim_{t^* \to +\infty} \frac{\phi_s(f(\mathbf{p}(t)))}{\int_0^{+\infty} \phi_s(-|\cos(\theta)|(u - t^*)) \mathrm{d}u} \<br>&amp;&#x3D; \lim_{t^* \to +\infty} \frac{\phi_s(f(\mathbf{p}(t)))}{\int_{-t^*}^{+\infty} \phi_s(-|\cos(\theta)|u^*) \mathrm{d}u^*} \tag{7} \<br>&amp;&#x3D; \lim_{t^* \to +\infty} \frac{\phi_s(f(\mathbf{p}(t)))}{|\cos(\theta)|^{-1} \int_{-|\cos(\theta)|t^*}^{+\infty} \phi_s(\hat{u}) \mathrm{d}\hat{u}} \<br>&amp;&#x3D; |\cos(\theta)| \phi_s(f(\mathbf{p}(t))).<br>\end{align*}<br>$$</p>
+<h3 id="朴素解中的偏差"><a href="#朴素解中的偏差" class="headerlink" title="朴素解中的偏差"></a>朴素解中的偏差</h3><p>权重函数定义为 $w(t) &#x3D; T(t) \sigma(t)$，其中不透明度 $\sigma(t) &#x3D; \phi_s(f(\mathbf{p}(t)))$。因此，我们有<br>$$<br>\begin{equation}<br>\begin{split}<br>\frac{\mathrm{d}w}{\mathrm{d}t} &amp;&#x3D; \frac{\mathrm{d}(T(t)\sigma(t))}{\mathrm{d}t} \<br>&amp;&#x3D; \frac{\mathrm{d}T(t)}{\mathrm{d}t}\sigma(t) + T(t)\frac{\mathrm{d}\sigma(t)}{\mathrm{d}t} \<br>&amp;&#x3D; \left[\exp\left(-\int_0^t \sigma(t) \mathrm{d}t\right)(-\sigma(t))\right]\sigma(t) + T(t)\frac{\mathrm{d}\sigma(t)}{\mathrm{d}t} \<br>&amp;&#x3D; T(t)(-\sigma(t))\sigma(t) + T(t)\frac{\mathrm{d}\sigma(t)}{\mathrm{d}t} \<br>&amp;&#x3D; T(t)\left(\frac{\mathrm{d}\sigma(t)}{\mathrm{d}t} - \sigma(t)^2\right).<br>\end{split}<br>\end{equation}<br>$$<br>待定</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2024/11/19/%E6%9C%AA%E5%91%BD%E5%90%8D/"> Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">TO-Hitori</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NeuS-Note"><span class="toc-number">1.</span> <span class="toc-text">NeuS Note</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">渲染过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.1.1.</span> <span class="toc-text">场景表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S-%E5%AF%86%E5%BA%A6"><span class="toc-number">1.1.2.</span> <span class="toc-text">S-密度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93"><span class="toc-number">1.1.3.</span> <span class="toc-text">渲染</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E6%9D%83%E9%87%8D%E5%87%BD%E6%95%B0-w-t-%E7%9A%84%E8%A6%81%E6%B1%82"><span class="toc-number">1.1.4.</span> <span class="toc-text">对权重函数 $w(t)$ 的要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NeRF%E7%9A%84%E6%9C%B4%E7%B4%A0%E8%A7%A3"><span class="toc-number">1.1.5.</span> <span class="toc-text">NeRF的朴素解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NeuS%E5%AF%B9%E6%9D%83%E9%87%8D%E5%87%BD%E6%95%B0-w-t-%E7%9A%84%E8%A7%A3"><span class="toc-number">1.1.6.</span> <span class="toc-text">NeuS对权重函数 $w(t)$ 的解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E9%80%8F%E6%98%8E%E5%AF%86%E5%BA%A6%E5%87%BD%E6%95%B0-rho-t-%E7%9A%84%E6%8E%A8%E5%AF%BC"><span class="toc-number">1.1.6.1.</span> <span class="toc-text">不透明密度函数 $\rho(t)$ 的推导</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%B4%E7%B4%A0%E8%A7%A3%E4%B8%AD%E7%9A%84%E5%81%8F%E5%B7%AE"><span class="toc-number">1.1.7.</span> <span class="toc-text">朴素解中的偏差</span></a></li></ol></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
